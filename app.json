@@ -4,11 +4,6 @@
     "slug": "mosh",
     "version": "1.0.0",
     "orientation": "default",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },

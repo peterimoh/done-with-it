@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, SafeAreaView, Image, StyleSheet, StatusBar } from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import color from '../config/color';
 
 function ViewImageScreen(props) {
@@ -8,10 +8,18 @@ function ViewImageScreen(props) {
     <SafeAreaView style={style.parent}>
       <StatusBar style='auto' />
       <View style={style.controllers}>
-        <View style={style.back}></View>
-        <View style={style.next}></View>
+        <View style={style.back}>
+          <MaterialCommunityIcons name='close' size={30} color='white' />
+        </View>
+        <View style={style.next}>
+          <MaterialCommunityIcons
+            name='trash-can-outline'
+            size={30}
+            color='white'
+          />
+        </View>
       </View>
-    {/* <MaterialCommunityIcons name='email' size={60}/> */}
+
       <View style={style.picture}>
         <Image
           style={style.image}
@@ -48,16 +56,10 @@ const style = StyleSheet.create({
   },
 
   back: {
-    backgroundColor: color.primary,
-    height: 50,
-    width: 50,
     left: 30,
   },
 
   next: {
-    backgroundColor: color.secondary,
-    height: 50,
-    width: 50,
     right: 30,
   },
 });
