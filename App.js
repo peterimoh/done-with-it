@@ -1,5 +1,5 @@
 import { StyleSheet, Switch } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
@@ -13,10 +13,8 @@ import {
   Inter_800ExtraBold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
-
-import LoginScreen from './app/container/LoginScreen';
-import ListingEditScreen from './app/container/ListingEditScreen';
-import MessagesScreen from './app/container/MessagesScreen';
+import * as ImagePicker from 'expo-image-picker'
+import Screen from './app/components/Screen';
 
 
 // "splash": {
@@ -41,15 +39,27 @@ export default function App() {
     Inter_800ExtraBold,
     Inter_900Black,
   });
+
+  const requestPermission = async () => {
+    const {granted} = await  ImagePicker.requestCameraPermissionsAsync();
+
+    if(!granted) return alert("You need to enable Camera Permission to Upload Image")
+   }
+
+
+  useEffect(() => {
+    requestPermission()
+  }, [])
+
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
     <>
-      {/* <ListingEditScreen/> */}
-      <MessagesScreen/>
-      {/* <LoginScreen/> */}
+     <Screen></Screen>
+     
     </>
   );
 }
