@@ -14,6 +14,7 @@ const menuItems = [
       name: 'format-list-bulleted',
       backgroundColor: color.primary,
     },
+    target: "Listings"
   },
   {
     id: 2,
@@ -22,10 +23,11 @@ const menuItems = [
       name: 'email',
       backgroundColor: color.secondary,
     },
+    target: "Messages"
   },
 ];
 
-export default function AccountScreen() {
+export default function AccountScreen({navigation}) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -50,6 +52,7 @@ export default function AccountScreen() {
                   name={item.icon.name}
                 />
               }
+              onPress={()=> navigation.navigate(item.target)}
             />
           )}
         />
@@ -68,6 +71,7 @@ export default function AccountScreen() {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
+    top: -20,
     backgroundColor: color.white,
   },
 

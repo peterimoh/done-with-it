@@ -12,7 +12,7 @@ import ButtonComponent from '../components/Button';
 import color from '../config/color';
 
 const { width, height } = Dimensions.get('window');
-function WelcomeScreen() {
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       source={require('../../asset/background.jpg')}
@@ -31,8 +31,16 @@ function WelcomeScreen() {
           <Text style={style.tagline}>Sell What You Don't Need</Text>
         </View>
         <View style={style.buttons}>
-          <ButtonComponent title='Login' colors='primary' />
-          <ButtonComponent title='Sign Up' colors='secondary' />
+          <ButtonComponent
+            title='Login'
+            colors='primary'
+            PressEvt={() => navigation.navigate('Login')}
+          />
+          <ButtonComponent
+            title='Sign Up'
+            colors='secondary'
+            PressEvt={() => navigation.navigate('Register')}
+          />
         </View>
       </View>
     </ImageBackground>
@@ -58,7 +66,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 20,
     fontSize: 20,
-    fontWeight: '700',
+    fontFamily: 'Inter_600SemiBold',
   },
 
   wrapper: {

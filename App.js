@@ -1,5 +1,3 @@
-import { StyleSheet, Switch } from 'react-native';
-import { useState, useEffect } from 'react';
 import AppLoading from 'expo-app-loading';
 import {
   useFonts,
@@ -13,9 +11,14 @@ import {
   Inter_800ExtraBold,
   Inter_900Black,
 } from '@expo-google-fonts/inter';
-import * as ImagePicker from 'expo-image-picker'
-import Screen from './app/components/Screen';
+import { LogBox } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
+import AppNavigations from './app/navigation/AppNavigations';
+import { AuthNavigation } from './app/navigation/AuthNavigation';
+import navigationTheme from './app/navigation/navigationTheme';
+import Screen from './app/components/Screen';
+import { FeedsNavigator } from './app/navigation/FeedsNavigator';
 
 // "splash": {
 //       "image": "./asset/logo-red.png",
@@ -23,10 +26,8 @@ import Screen from './app/components/Screen';
 //       "backgroundColor": "#fc5c65"
 //     },
 
-
-
 export default function App() {
-
+LogBox.ignoreLogs(['Overwriting fontFamily style attribute preprocessor']);
 
   let [fontsLoaded] = useFonts({
     Inter_100Thin,
@@ -40,42 +41,21 @@ export default function App() {
     Inter_900Black,
   });
 
-  const requestPermission = async () => {
-    const {granted} = await  ImagePicker.requestCameraPermissionsAsync();
-
-    if(!granted) return alert("You need to enable Camera Permission to Upload Image")
-   }
-
-
-  useEffect(() => {
-    requestPermission()
-  }, [])
-
-
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
     <>
-     <Screen></Screen>
-     
+      <NavigationContainer theme={navigationTheme}>
+        {/* <AuthNavigation /> */}
+        {/* <Screen> */}
+        <AppNavigations />
+        
+        {/* </Screen> */}
+      </NavigationContainer>
     </>
   );
 }
 
 // 08101113333
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#f8f4f4',
-    padding: 10,
-    paddingTop: 100,
-  },
-
-  input: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    marginVertical: 10,
-  },
-});
